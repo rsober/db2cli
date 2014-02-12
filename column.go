@@ -2,10 +2,10 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package odbc
+package db2cli
 
 import (
-	"code.google.com/p/odbc/api"
+	"bitbucket.org/phiggins/db2cli/api"
 	"database/sql/driver"
 	"errors"
 	"fmt"
@@ -82,9 +82,6 @@ func NewColumn(h api.SQLHSTMT, idx int) (Column, error) {
 	case api.SQL_TYPE_DATE:
 		var v api.SQL_DATE_STRUCT
 		return NewBindableColumn(b, api.SQL_C_DATE, int(unsafe.Sizeof(v))), nil
-	case api.SQL_GUID:
-		var v api.SQLGUID
-		return NewBindableColumn(b, api.SQL_C_GUID, int(unsafe.Sizeof(v))), nil
 	case api.SQL_CHAR, api.SQL_VARCHAR:
 		return NewVariableWidthColumn(b, api.SQL_C_CHAR, size), nil
 	case api.SQL_WCHAR, api.SQL_WVARCHAR:
@@ -140,18 +137,6 @@ func (c *BaseColumn) Value(buf []byte) (driver.Value, error) {
 		r := time.Date(int(t.Year), time.Month(t.Month), int(t.Day),
 			int(t.Hour), int(t.Minute), int(t.Second), int(t.Fraction),
 			time.Local)
-		return r, nil
-	case api.SQL_C_GUID:
-		t := (*api.SQLGUID)(p)
-		var p1, p2 string
-		for _, d := range t.Data4[:2] {
-			p1 += fmt.Sprintf("%02x", d)
-		}
-		for _, d := range t.Data4[2:] {
-			p2 += fmt.Sprintf("%02x", d)
-		}
-		r := fmt.Sprintf("%08x-%04x-%04x-%s-%s",
-			t.Data1, t.Data2, t.Data3, p1, p2)
 		return r, nil
 	case api.SQL_C_DATE:
 		t := (*api.SQL_DATE_STRUCT)(p)

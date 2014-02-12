@@ -4,10 +4,10 @@
 
 // Package odbc implements database/sql driver to access data via odbc interface.
 //
-package odbc
+package db2cli
 
 import (
-	"code.google.com/p/odbc/api"
+	"bitbucket.org/phiggins/db2cli/api"
 	"database/sql"
 )
 
@@ -35,26 +35,8 @@ func initDriver() error {
 		api.SQLPOINTER(api.SQL_OV_ODBC3), 0)
 	if IsError(ret) {
 		defer releaseHandle(drv.h)
-		return NewError("SQLSetEnvAttr", drv.h)
+		return NewError("SQLSetEnvAttr ODBC v3", drv.h)
 	}
-
-	//TODO: find a way to make this attribute changeable at runtime
-	//Enable connection pooling
-	ret = api.SQLSetEnvAttr(drv.h, api.SQL_ATTR_CONNECTION_POOLING, api.SQLPOINTER(api.SQL_CP_ONE_PER_HENV), api.SQL_IS_UINTEGER)
-	if IsError(ret) {
-		defer releaseHandle(drv.h)
-		return NewError("SQLSetEnvAttr", drv.h)
-	}
-
-	//Set relaxed connection pool matching
-	ret = api.SQLSetEnvAttr(drv.h, api.SQL_ATTR_CP_MATCH, api.SQLPOINTER(api.SQL_CP_RELAXED_MATCH), api.SQL_IS_UINTEGER)
-	if IsError(ret) {
-		defer releaseHandle(drv.h)
-		return NewError("SQLSetEnvAttr", drv.h)
-	}
-
-	//TODO: it would be nice if we could call "drv.SetMaxIdleConns(0)" here but from the docs it looks like
-	//the user must call this function after db.Open
 
 	return nil
 }
@@ -71,5 +53,5 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	sql.Register("odbc", &drv)
+	sql.Register("db2-cli", &drv)
 }

@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package odbc
+package db2cli
 
 import (
 	"database/sql"
@@ -16,7 +16,7 @@ import (
 	"testing"
 	"time"
 
-	"code.google.com/p/odbc/api"
+	"bitbucket.org/phiggins/db2cli/api"
 )
 
 var (

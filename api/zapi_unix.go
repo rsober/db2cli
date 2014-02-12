@@ -12,11 +12,9 @@ package api
 
 import "unsafe"
 
-// #cgo darwin LDFLAGS: -lodbc -L/opt/local/lib
-// #cgo darwin CFLAGS: -I/opt/local/include
-// #cgo linux LDFLAGS: -lodbc
-// #include <sql.h>
-// #include <sqlext.h>
+// #cgo darwin LDFLAGS: -ldb2
+// #cgo linux LDFLAGS: -ldb2
+// #include <sqlcli1.h>
 import "C"
 
 func SQLAllocHandle(handleType SQLSMALLINT, inputHandle SQLHANDLE, outputHandle *SQLHANDLE) (ret SQLRETURN) {

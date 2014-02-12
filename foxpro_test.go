@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package odbc_test
+package db2cli_test
 
 import (
 	_ "code.google.com/p/odbc"
