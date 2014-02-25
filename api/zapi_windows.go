@@ -7,7 +7,7 @@ import "unsafe"
 import "syscall"
 
 var (
-	mododbc32 = syscall.NewLazyDLL("odbc32.dll")
+	mododbc32 = syscall.NewLazyDLL("db2cli64.dll")
 
 	procSQLAllocHandle     = mododbc32.NewProc("SQLAllocHandle")
 	procSQLBindCol         = mododbc32.NewProc("SQLBindCol")
