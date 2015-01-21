@@ -6,6 +6,7 @@ package db2cli
 
 import (
 	"bitbucket.org/phiggins/db2cli/api"
+	"database/sql/driver"
 	"fmt"
 	"strings"
 	"unsafe"
@@ -59,6 +60,10 @@ func NewError(apiName string, handle interface{}) error {
 			State:       api.UTF16ToString(state),
 			NativeError: int(ne),
 			Message:     api.UTF16ToString(msg),
+		}
+		if strings.Contains(r.Message, "CLI0106E") ||
+			strings.Contains(r.Message, "CLI0108E") {
+			return driver.ErrBadConn
 		}
 		err.Diag = append(err.Diag, r)
 	}

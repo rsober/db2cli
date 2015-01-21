@@ -27,11 +27,11 @@ func (c *Conn) Begin() (driver.Tx, error) {
 	if c.tx != nil {
 		return nil, errors.New("already in a transaction")
 	}
-	c.tx = &Tx{c: c}
 	err := c.setAutoCommitAttr(api.SQL_AUTOCOMMIT_OFF)
 	if err != nil {
 		return nil, err
 	}
+	c.tx = &Tx{c: c}
 	return c.tx, nil
 }
 
