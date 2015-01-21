@@ -62,6 +62,7 @@ func NewError(apiName string, handle interface{}) error {
 			Message:     api.UTF16ToString(msg),
 		}
 		if strings.Contains(r.Message, "CLI0106E") ||
+			strings.Contains(r.Message, "CLI0107E") ||
 			strings.Contains(r.Message, "CLI0108E") {
 			return driver.ErrBadConn
 		}
