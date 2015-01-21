@@ -16,7 +16,7 @@ import (
 	"testing"
 	"time"
 
-	"bitbucket.org/phiggins/db2cli/api"
+	"bitbucket.org/MrYeah/db2cli/api"
 )
 
 var (
