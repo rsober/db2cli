@@ -47,7 +47,7 @@ Sample program
     package main
 
     import (
-        _ "bitbucket.org/MrYeah/db2cli"
+        _ "bitbucket.org/phiggins/db2cli"
         "database/sql"
         "flag"
         "fmt"

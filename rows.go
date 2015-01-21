@@ -5,7 +5,7 @@
 package db2cli
 
 import (
-	"bitbucket.org/MrYeah/db2cli/api"
+	"bitbucket.org/phiggins/db2cli/api"
 	"database/sql/driver"
 	"io"
 )
