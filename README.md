@@ -97,7 +97,7 @@ Sample program
             return err
         }
         defer db.Close()
-        st, err := db.Prepare("select current timestamp from sysibm.sysdummy1")
+        st, err := db.Prepare("select current timestamp from sysibm.sysdummy1;")
         if err != nil {
             return err
         }

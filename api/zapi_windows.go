@@ -7,7 +7,7 @@ import "unsafe"
 import "syscall"
 
 var (
-	mododbc32 = syscall.NewLazyDLL("db2cli64.dll")
+	mododbc32 = syscall.NewLazyDLL(GetDllName())
 
 	procSQLAllocHandle     = mododbc32.NewProc("SQLAllocHandle")
 	procSQLBindCol         = mododbc32.NewProc("SQLBindCol")
@@ -30,6 +30,14 @@ var (
 	procSQLSetEnvAttr      = mododbc32.NewProc("SQLSetEnvAttr")
 	procSQLSetConnectAttrW = mododbc32.NewProc("SQLSetConnectAttrW")
 )
+
+func GetDllName() string {
+	if winArch := os.Getenv("PROCESSOR_ARCHITECTURE"); winArch == "x86" {
+		return "db2cli.dll"
+	} else {
+		return "db2cli64.dll"
+	}
+}
 
 func SQLAllocHandle(handleType SQLSMALLINT, inputHandle SQLHANDLE, outputHandle *SQLHANDLE) (ret SQLRETURN) {
 	r0, _, _ := syscall.Syscall(procSQLAllocHandle.Addr(), 3, uintptr(handleType), uintptr(inputHandle), uintptr(unsafe.Pointer(outputHandle)))
