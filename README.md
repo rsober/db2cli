@@ -97,6 +97,7 @@ Sample program
             return err
         }
         defer db.Close()
+        // If you have to go through DB2-Connect you have to terminate SQL-statements with ';'
         st, err := db.Prepare("select current timestamp from sysibm.sysdummy1;")
         if err != nil {
             return err

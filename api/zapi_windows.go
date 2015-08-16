@@ -5,6 +5,7 @@ package api
 
 import "unsafe"
 import "syscall"
+import "os"
 
 var (
 	mododbc32 = syscall.NewLazyDLL(GetDllName())
