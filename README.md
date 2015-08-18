@@ -41,6 +41,18 @@ This sample script demonstrates the bare minimum needed:
 
     ./dbtest -conn 'DATABASE=db; HOSTNAME=dbhost; PORT=40000; PROTOCOL=TCPIP; UID=me; PWD=secret;'
 
+
+On some DB2 instances (e.g. z/OS) you may have to connect to DB2-Connect which will forward connection requests to DB2.
+In theses cases you may run into something like:
+
+SQLExecute: {42601} [IBM][CLI Driver][DB2] SQL0104N  An unexpected token " " was found following "". 
+Expected tokens may include:  ". <IDENTIFIER> JOIN INNER LEFT RIGHT FULL CROSS , HAVING GROUP".  SQLSTATE=42601
+	
+Although not really obvious, this means that a terminator is missing for SQL statements.
+This may be due to a different parsing approach when DB2-Connect is involved.
+If you terminate your SQL statements with ';' you should be fine.
+Most of the times though you will connect directly to DB2 and SQL statements without ';' terminator work.
+
 Sample program
 --------------
 
