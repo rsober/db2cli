@@ -224,7 +224,7 @@ func TestMSSQLCreateInsertDelete(t *testing.T) {
 			weight:    15.5,
 			dob:       time.Date(2000, 5, 10, 11, 1, 1, 0, time.Local),
 			data:      []byte{0x0, 0x0, 0xb, 0xad, 0xc0, 0xde},
-			canBeNull: sql.NullString{"aa", true},
+			canBeNull: sql.NullString{String:"aa", Valid:true},
 		},
 		"gopher": {
 			age:       3,
@@ -232,7 +232,7 @@ func TestMSSQLCreateInsertDelete(t *testing.T) {
 			weight:    26.12,
 			dob:       time.Date(2009, 5, 10, 11, 1, 1, 123e6, time.Local),
 			data:      []byte{0x0},
-			canBeNull: sql.NullString{"bbb", true},
+			canBeNull: sql.NullString{String:"bbb", Valid:true},
 		},
 	}
 
@@ -305,7 +305,7 @@ func TestMSSQLCreateInsertDelete(t *testing.T) {
 			continue
 		}
 		if is.weight != want.weight {
-			t.Errorf("I did not know, that %s weights %dkg (%dkg expected)", name, is.weight, want.weight)
+			t.Errorf("I did not know, that %s weights %fkg (%fkg expected)", name, is.weight, want.weight)
 			continue
 		}
 		if !is.dob.Equal(want.dob) {
