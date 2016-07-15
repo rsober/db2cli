@@ -5,9 +5,9 @@
 package db2cli
 
 import (
-	"bitbucket.org/y4tizi/db2cli/api"
 	"database/sql/driver"
 	"errors"
+	"github.com/AnyPresence/db2cli/api"
 )
 
 type Tx struct {

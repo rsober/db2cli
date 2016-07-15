@@ -5,8 +5,8 @@
 package db2cli
 
 import (
-	"bitbucket.org/y4tizi/db2cli/api"
 	"fmt"
+	"github.com/AnyPresence/db2cli/api"
 )
 
 func ToHandleAndType(handle interface{}) (h api.SQLHANDLE, ht api.SQLSMALLINT) {

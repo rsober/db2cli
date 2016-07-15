@@ -16,7 +16,7 @@ import (
 	"testing"
 	"time"
 
-	"bitbucket.org/y4tizi/db2cli/api"
+	"github.com/AnyPresence/db2cli/api"
 )
 
 var (
@@ -224,7 +224,7 @@ func TestMSSQLCreateInsertDelete(t *testing.T) {
 			weight:    15.5,
 			dob:       time.Date(2000, 5, 10, 11, 1, 1, 0, time.Local),
 			data:      []byte{0x0, 0x0, 0xb, 0xad, 0xc0, 0xde},
-			canBeNull: sql.NullString{String:"aa", Valid:true},
+			canBeNull: sql.NullString{String: "aa", Valid: true},
 		},
 		"gopher": {
 			age:       3,
@@ -232,7 +232,7 @@ func TestMSSQLCreateInsertDelete(t *testing.T) {
 			weight:    26.12,
 			dob:       time.Date(2009, 5, 10, 11, 1, 1, 123e6, time.Local),
 			data:      []byte{0x0},
-			canBeNull: sql.NullString{String:"bbb", Valid:true},
+			canBeNull: sql.NullString{String: "bbb", Valid: true},
 		},
 	}
 

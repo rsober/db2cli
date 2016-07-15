@@ -7,8 +7,8 @@
 package db2cli
 
 import (
-	"bitbucket.org/y4tizi/db2cli/api"
 	"database/sql"
+	"github.com/AnyPresence/db2cli/api"
 )
 
 var drv Driver

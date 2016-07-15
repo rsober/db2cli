@@ -5,10 +5,10 @@
 package db2cli
 
 import (
-	"bitbucket.org/y4tizi/db2cli/api"
 	"database/sql/driver"
 	"errors"
 	"fmt"
+	"github.com/AnyPresence/db2cli/api"
 	"sync"
 	"time"
 	"unsafe"

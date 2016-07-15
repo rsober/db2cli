@@ -5,9 +5,9 @@
 package db2cli
 
 import (
-	"bitbucket.org/y4tizi/db2cli/api"
 	"database/sql/driver"
 	"fmt"
+	"github.com/AnyPresence/db2cli/api"
 	"time"
 	"unsafe"
 )
